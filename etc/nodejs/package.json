@@ -1,0 +1,12 @@
+{
+  "name": "docker-node-app",
+  "version": "1.0.0",
+  "description": "dockerized nodejs application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Dewey Hong <doohee323@tz.com>",
+  "dependencies": {
+  }
+}

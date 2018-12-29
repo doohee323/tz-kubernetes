@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-tzapp.nextransfer.net
+  labels:
+    app: tzapp
+spec:
+  containers:
+  - name: app-elb
+    image: doohee323/tzapp:0.3
+    ports:
+    - name: nodejs-port
+      containerPort: 3000
+    env:
+      - name: SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: db-secrets
+            key: username
+      - name: SECRET_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: db-secrets
+            key: password
+      - name: DB_HOST
+        value: 127.0.0.1
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 3000
+      initialDelaySeconds: 15
+      timeoutSeconds: 30
+    readinessProbe:
+      httpGet:
+        path: /
+        port: nodejs-port
+      initialDelaySeconds: 15
+      timeoutSeconds: 30
+    volumeMounts:
+    - name: cred-volume
+      mountPath: /etc/creds
+      readOnly: true
+  volumes:
+  - name: cred-volume
+    secret:
+      secretName: db-secrets

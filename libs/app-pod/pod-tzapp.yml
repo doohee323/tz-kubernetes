@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-tzapp.nextransfer.net
+  labels:
+    app: tzapp
+spec:
+  containers:
+  - name: app-pod
+    image: doohee323/tzapp:0.1
+    ports:
+    - containerPort: 3000

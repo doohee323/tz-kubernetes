@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: tzapp-controller
+spec:
+  replicas: 2
+  selector:
+    app: tzapp
+  template:
+    metadata:
+      labels:
+        app: tzapp
+    spec:
+      containers:
+      - name: app-controller
+        image: doohee323/tzapp:0.1
+        ports:
+          - containerPort: 3000

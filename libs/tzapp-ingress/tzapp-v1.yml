@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tzapp-v1-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tzapp-v1
+    spec:
+      containers:
+      - name: app-deploy
+        image: doohee323/tzapp:0.1
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tzapp-v1
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30303
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: tzapp
+
+

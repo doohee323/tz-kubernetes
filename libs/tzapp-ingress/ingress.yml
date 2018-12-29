@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tzapp-rules
+spec:
+  rules:
+  - host: tzapp-v1.nextransfer.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tzapp-v1
+          servicePort: 80
+  - host: tzapp-v2.nextransfer.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: tzapp-v2
+          servicePort: 80
+
+          

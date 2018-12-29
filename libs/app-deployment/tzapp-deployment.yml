@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tzapp-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: tzapp
+    spec:
+      containers:
+      - name: app-deploy
+        image: doohee323/tzapp:0.1
+        ports:
+          - containerPort: 3000
+        env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: username
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: password
+          - name: DB_HOST
+            value: 127.0.0.1
+          - name: DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: database
+          - name: DRIVER
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: driver
+        volumeMounts:
+        - name: cred-volume
+          mountPath: /etc/creds
+          readOnly: true
+        - name: config-volume
+          mountPath: /etc/config
+      volumes:
+      - name: cred-volume
+        secret:
+          secretName: db-secrets
+      - name: config-volume
+        configMap:
+          name: app-config
+          
