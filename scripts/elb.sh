@@ -271,7 +271,7 @@ aws route53 list-resource-record-sets --hosted-zone-id ""${a_hosted_zone_id}" --
 a_elb_ip=`dig ${a_dns_name} | grep ${a_dns_name}. | head -2 | tail -1 | awk '{ print $5}'`
 echo "a_elb_ip: "${a_elb_ip}
 
-check_nw_loading "dig test.topzone.biz | grep 'test.topzone.biz.' | head -2 | tail -1 | awk '{ print \$5}'" ${a_elb_ip} 100
+check_nw_loading "dig test.topzone.biz | grep 'test.topzone.biz.' | head -2 | tail -1 | awk '{ print \$5}'" ${a_elb_ip} 500
 if [ ${RTN} == 0 ]; then
 		ping test.topzone.biz -c 5
 		sleep 20
