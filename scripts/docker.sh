@@ -54,8 +54,8 @@ echo curl http://localhost:49160 >> /vagrant/exec.log
 echo ############################################################### >> /vagrant/exec.log
 echo # Need to change user_id and password here!!! >> /vagrant/exec.log
 echo ############################################################### >> /vagrant/exec.log
-docker login -u doohee323 -p hdh971097
-echo docker login -u doohee323 -p hdh971097 >> /vagrant/exec.log
+docker login -u doohee323 -p xxx
+echo docker login -u doohee323 -p xxx >> /vagrant/exec.log
 #docker login
 #Username: doohee323
 #Password:

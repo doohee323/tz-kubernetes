@@ -121,7 +121,7 @@ aws ec2 authorize-security-group-ingress --group-id ${a_sid} --protocol icmp --p
 
 check_nw_loading "dig api.topzone.biz | grep 'api.topzone.biz.' | head -2 | tail -1 | awk '{ print \$5}'" ${a_master_ip} 400
 if [ ${RTN} == 0 ]; then
-		ping ${a_domain} -c 5
+		ping api.topzone.biz -c 5
 		sleep 20
 elif [ ${RTN} == -1 ]; then
 		echo kops delete cluster --name topzone.biz --yes --state=s3://kops-state-tz       >> /vagrant/exec.log
