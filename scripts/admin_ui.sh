@@ -14,7 +14,7 @@ kubectl create -f dashboard/sample-user.yml
 echo kubectl create -f dashboard/sample-user.yml >> /vagrant/exec.log
 
 echo ############################################################### >> /vagrant/exec.log
-echo "# Open https://api.nextransfer.net/ui" >> /vagrant/exec.log
+echo "# Open https://api.topzone.biz/ui" >> /vagrant/exec.log
 echo "# Log in with username / password" >> /vagrant/exec.log
 echo ############################################################### >> /vagrant/exec.log
 a_auth=`kubectl config view | tail -n 2`
@@ -37,7 +37,7 @@ echo ${a_token}
 # kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
 # vi /etc/resolv.conf
 # nameserver 100.64.0.10
-# search default.svc.cluster.local svc.cluster.local cluster.local us-west-2.compute.internal
+# search default.svc.cluster.local svc.cluster.local cluster.local us-west-1.compute.internal
 # options ndots:5
 
 kubectl create -f manage/lifecycle.yml

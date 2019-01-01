@@ -9,10 +9,9 @@ sudo mv jx /usr/local/bin
 jx create cluster aws
 
 kops create cluster --ssh-public-key ~/.ssh/id_rsa.pub --yes \
-    --name=nextransfer.net --state=s3://kops-state-hdh --zones=us-west-2 \
-    --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=nextransfer.net
+    --name=topzone.biz --state=s3://kops-state-tz --zones=us-west-1 \
+    --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=topzone.biz
 
-
-kubectl get service -n kube-system jxing-nginx-ingress-controller  -oyaml | grep nextransfer.net
+kubectl get service -n kube-system jxing-nginx-ingress-controller  -oyaml | grep topzone.biz
 
 exit 0

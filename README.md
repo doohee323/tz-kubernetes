@@ -11,7 +11,8 @@ Make a kubernetes loadbalancer(ELB) in AWS from vagrant
 
 # Preparations
 ```
-	1. Make a sub domain in route53 ex) nextransfer.net
+	1. Make a sub domain in route53 ex) topzone.biz
+		dig NS topzone.biz
 
  	2. Add an aws user with permissions
 		AmazonEC2FullAccess
@@ -25,11 +26,11 @@ Make a kubernetes loadbalancer(ELB) in AWS from vagrant
 		vi ~/tz-kubernetes/etc/.aws/credentials
 		
 		* Check available aws zone
-		  aws ec2 describe-availability-zones --region us-west-2
+		  aws ec2 describe-availability-zones --region us-west-1
 		  
 	4. Make s3
-		s3://kops-state-hdh
-		Make the bucket to be written by aws user
+		vi ~/scripts/elb.sh
+		aws s3api create-bucket --bucket kops-state-tz
 		
 	5. change your docker_hub id / password
 		* https://hub.docker.com
@@ -61,7 +62,7 @@ Make a kubernetes loadbalancer(ELB) in AWS from vagrant
 # Remove All resources in AWS
 ```
 	vagrant ssh
-	kops delete cluster --name nextransfer.net --yes --state=s3://kops-state-hdh
+	kops delete cluster --name topzone.biz --yes --state=s3://kops-state-tz
 ```
 
 # Improvement

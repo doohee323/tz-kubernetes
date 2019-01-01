@@ -22,7 +22,7 @@ kubectl get deployments
 kubectl get rs
 kubectl get pods --show-labels
 
-#kubectl label nodes ip-172-20-63-194.us-west-2.compute.internal hardware=high-spec
+#kubectl label nodes ip-172-20-63-194.us-west-1.compute.internal hardware=high-spec
 #kubectl get nodes --show-labels | grep 'hardware=high-spec'
 
 kubectl create -f app-deployment/tzapp-deployment.yml
